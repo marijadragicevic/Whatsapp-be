@@ -1,6 +1,10 @@
 import logger from "../configs/logger.config.js";
 import { updateLatestMessage } from "../services/conversation.service.js";
-import { createMessage, populateMessage } from "../services/message.service.js";
+import {
+  createMessage,
+  getConversationMessages,
+  populateMessage,
+} from "../services/message.service.js";
 
 export const sendMessage = async (request, response, next) => {
   try {
@@ -32,7 +36,16 @@ export const sendMessage = async (request, response, next) => {
 
 export const getMessages = async (request, response, next) => {
   try {
-    response.send("get messages");
+    const { conversationId } = request.params;
+
+    if (!conversationId) {
+      logger.error("Please add a conversation id in params");
+      response.sendStatus(400);
+    }
+
+    const messages = await getConversationMessages(conversationId);
+
+    response.json(messages);
   } catch (error) {
     next(error);
   }
