@@ -4,6 +4,7 @@ import {
   createConversation,
   doesConversationExist,
   populateConversation,
+  getUserConversations,
 } from "../services/conversation.service.js";
 import { findUser } from "../services/user.service.js";
 
@@ -47,6 +48,16 @@ export const createOrOpenConversation = async (request, response, next) => {
       );
       response.status(200).json(populatedConversation);
     }
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getConversations = async (request, response, next) => {
+  try {
+    const userId = request?.user?.userId;
+    const conversations = await getUserConversations(userId);
+    response.status(200).json(conversations);
   } catch (error) {
     next(error);
   }
