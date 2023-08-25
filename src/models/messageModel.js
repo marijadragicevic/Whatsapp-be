@@ -18,7 +18,7 @@ const messageSchema = mongoose.Schema(
     },
     files: [],
   },
-  { collection: "messages", timestamp: true }
+  { collection: "messages", timestamps: true }
 );
 
 const MessageModel =

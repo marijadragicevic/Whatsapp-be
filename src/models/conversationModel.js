@@ -31,7 +31,7 @@ const conversationSchema = mongoose.Schema(
   },
   {
     collection: "conversations",
-    timestamp: true,
+    timestamps: true,
   }
 );
 
