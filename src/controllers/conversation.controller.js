@@ -35,6 +35,7 @@ export const createOrOpenConversation = async (request, response, next) => {
 
       let conversationData = {
         name: receiverUser?.name,
+        picture: receiverUser?.picture,
         isGroup: false,
         users: [senderId, receiverId],
       };
