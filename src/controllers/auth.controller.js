@@ -42,7 +42,7 @@ export const register = async (request, response, next) => {
         email: newUser.email,
         picture: newUser.picture,
         status: newUser.status,
-        access_token,
+        token: access_token,
       },
     });
   } catch (error) {
@@ -80,7 +80,7 @@ export const login = async (request, response, next) => {
         email: user.email,
         picture: user.picture,
         status: user.status,
-        access_token,
+        token: access_token,
       },
     });
   } catch (error) {
@@ -128,7 +128,7 @@ export const refreshToken = async (request, response, next) => {
         email: user.email,
         picture: user.picture,
         status: user.status,
-        access_token,
+        token: access_token,
       },
     });
   } catch (error) {
