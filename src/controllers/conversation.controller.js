@@ -31,11 +31,9 @@ export const createOrOpenConversation = async (request, response, next) => {
     if (existedConversation) {
       response.json(existedConversation);
     } else {
-      let receiverUser = await findUser(receiverId);
-
       let conversationData = {
-        name: receiverUser?.name,
-        picture: receiverUser?.picture,
+        name: "conversation name",
+        picture: "conversation picture",
         isGroup: false,
         users: [senderId, receiverId],
       };
