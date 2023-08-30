@@ -54,7 +54,7 @@ const exitHandler = () => {
 
 io.on("connection", (socket) => {
   logger.info("Socket io connected successfully");
-  SocketServer(socket);
+  SocketServer(socket, io);
 });
 
 const unexpectedErrorHandler = (error) => {
