@@ -14,9 +14,8 @@ export const doesConversationExist = async (senderId, receiverId) => {
     .populate("users", "-password")
     .populate("latestMessage");
 
-  if (!conversationList) {
+  if (!conversationList)
     throw createHttpError.BadRequest("Oops... Something went wrong !");
-  }
 
   // populate message model
   conversationList = await UserModel.populate(conversationList, {
@@ -32,7 +31,6 @@ export const createConversation = async (data) => {
   if (!newConversation) {
     throw createHttpError.BadRequest("Oops... Something went wrong !");
   }
-
   return newConversation;
 };
 

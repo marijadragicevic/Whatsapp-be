@@ -31,9 +31,12 @@ export const createOrOpenConversation = async (request, response, next) => {
     if (existedConversation) {
       response.json(existedConversation);
     } else {
+      const receiver = await findUser(receiverId);
       let conversationData = {
-        name: "conversation name",
-        picture: "conversation picture",
+        // name: "conversation name",
+        // picture: "conversation picture",
+        name: receiver?.name,
+        picture: receiver?.picture,
         isGroup: false,
         users: [senderId, receiverId],
       };
@@ -45,6 +48,7 @@ export const createOrOpenConversation = async (request, response, next) => {
         "users",
         "-password"
       );
+
       response.status(200).json(populatedConversation);
     }
   } catch (error) {
