@@ -40,4 +40,12 @@ export default function (socket, io) {
       socket.in(user._id).emit("receive message", message);
     });
   });
+
+  //typing
+  socket.on("typing", (conversation) => {
+    socket.in(conversation).emit("typing", conversation);
+  });
+  socket.on("stop typing", (conversation) => {
+    socket.in(conversation).emit("stop typing");
+  });
 }
