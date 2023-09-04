@@ -53,6 +53,7 @@ export default function (socket, io) {
   });
 
   // call
+  //---call user
   socket.on("call user", (data) => {
     let userId = data.userToCall;
     let userSocketId = onlineUsers.find((user) => user.userId === userId);
@@ -63,5 +64,10 @@ export default function (socket, io) {
       name: data.name,
       picture: data.picture,
     });
+  });
+
+  //---answer call
+  socket.on("answer call", (data) => {
+    io.to(data.to).emit("call accepted", data.signal);
   });
 }
