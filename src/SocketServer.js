@@ -44,11 +44,24 @@ export default function (socket, io) {
     });
   });
 
-  //typing
+  // typing
   socket.on("typing", (conversation) => {
     socket.in(conversation).emit("typing", conversation);
   });
   socket.on("stop typing", (conversation) => {
     socket.in(conversation).emit("stop typing");
+  });
+
+  // call
+  socket.on("call user", (data) => {
+    let userId = data.userToCall;
+    let userSocketId = onlineUsers.find((user) => user.userId === userId);
+
+    io.to(userSocketId.socketId).emit("call user", {
+      signal: data.signal,
+      from: data.from,
+      name: data.name,
+      picture: data.picture,
+    });
   });
 }
