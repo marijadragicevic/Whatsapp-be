@@ -13,6 +13,9 @@ export default function (socket, io) {
 
     // send online users to frontend
     socket.emit("get-online-users", onlineUsers);
+
+    // send socket id
+    io.emit("setup socket", socket.id);
   });
 
   // socket  disconnect
